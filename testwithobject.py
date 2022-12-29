@@ -199,7 +199,10 @@ while True:
             time.sleep(2)
             break
 
-arm_and_takeoff(2)
+riselocn = LocationGlobalRelative(uav_location.lat, uav_location.lon, 2)
+vehicle.simple_goto(riselocn)
+time.sleep(2)
+print("UAV Location    Lat = %.7f  Lon = %.7f"%(uav_location.lat, uav_location.lon))
 GPIO.output(pin, GPIO.LOW)
 time.sleep(2)
 
