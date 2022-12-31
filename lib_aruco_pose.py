@@ -135,9 +135,9 @@ class ArucoSingleTracker():
         
         self._kill = False
         if show_video is None: show_video = self._show_video
-        ret, frame = self._cap.read()
-        size = frame.shape[:2]
-        out = cv2.VideoWriter('lib_aruco.mp4',self.fourcc, 20.0, (size[1], size[0]))
+        ret, frame = self._cap.read() # Just to get the frame shape so that dims need not be hard-coded
+        size = frame.shape[:2] # height, width, no.of channels
+        out = cv2.VideoWriter('lib_aruco.mp4',self.fourcc, 20.0, (size[1], size[0])) # width, height
         
         marker_found = False
         x = y = z = 0
