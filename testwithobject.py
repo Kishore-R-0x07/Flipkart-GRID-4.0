@@ -117,11 +117,11 @@ id_to_find      = 106
 marker_size     = 7.4 #- [cm]
 freq_send       = 1 #- Hz
 
-pickup_cm         = 2.0
+pickup_cm         = 29.0
 angle_descend       = 20*deg_2_rad
 land_speed_cms      = 30.0
 
-pin = 12
+pin = 21
 GPIO.setmode(GPIO.BCM)
 GPIO.setup(pin, GPIO.OUT)
 
@@ -188,7 +188,7 @@ while True:
             print("Commanding to   Lat = %.7f  Lon = %.7f"%(location_marker.lat, location_marker.lon))
             
         #--- Command to pickup
-        if z_cm <= pickup_cm:
+        if uav_location.alt*100.0 <= pickup_cm:
             picking = True
             GPIO.output(pin, GPIO.HIGH)
             time.sleep(2)
