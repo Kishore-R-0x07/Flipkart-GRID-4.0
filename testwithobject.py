@@ -114,7 +114,7 @@ deg_2_rad   = 1.0/rad_2_deg
 #--------------------------------------------------    
 #--- Define Tag
 id_to_find      = 106
-marker_size     = 10 #- [cm]
+marker_size     = 7.4 #- [cm]
 freq_send       = 1 #- Hz
 
 pickup_cm         = 17.0
@@ -148,7 +148,7 @@ while True:
         marker_found, x_cm, y_cm, z_cm = aruco_tracker.track(loop=False)
         if time.time() >= time_1 + 20.0:
             if vehicle.mode == "GUIDED":
-                print (" -->>COMMANDING TO LAND<<")
+                print (" Didn't see any marker, -->>COMMANDING TO LAND<<")
                 vehicle.mode = "LAND"
                 time.sleep(5)
                 break
