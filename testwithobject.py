@@ -117,7 +117,7 @@ id_to_find      = 106
 marker_size     = 7.4 #- [cm]
 freq_send       = 1 #- Hz
 
-pickup_cm         = 17.0
+pickup_cm         = 2.0
 angle_descend       = 20*deg_2_rad
 land_speed_cms      = 30.0
 
