@@ -113,7 +113,7 @@ deg_2_rad   = 1.0/rad_2_deg
 #-------------- LANDING MARKER  
 #--------------------------------------------------    
 #--- Define Tag
-id_to_find      = 17
+id_to_find      = 106
 marker_size     = 10 #- [cm]
 freq_send       = 1 #- Hz
 
@@ -125,16 +125,11 @@ pin = 12
 GPIO.setmode(GPIO.BCM)
 GPIO.setup(pin, GPIO.OUT)
 
-#--- Get the camera calibration path
-# Find full directory path of this script, used for loading config and other files
-cwd                 = path.dirname(path.abspath(__file__))
-calib_path          = cwd+"/../opencv/"
-# camera_matrix       = np.loadtxt(calib_path+'cameraMatrix_raspi.txt', delimiter=',')
-# camera_distortion   = np.loadtxt(calib_path+'cameraDistortion_raspi.txt', delimiter=',')    
+#--- Get the camera calibration matrices
 camera_matrix = np.array([[1.43709319e+03, 0.00000000e+00, 6.49533056e+02], [0.00000000e+00, 1.44123661e+03, 3.56905912e+02], [0.00000000e+00, 0.00000000e+00, 1.00000000e+00]])
 camera_distortion = np.array([[ 1.16247899e-01, -3.08672662e-01,  6.75064751e-03, -1.83413572e-03, 2.80469509e+00]])                                                                           
 
-aruco_tracker       = ArucoSingleTracker(id_to_find=id_to_find, marker_size=marker_size, show_video=True, 
+aruco_tracker       = ArucoSingleTracker(id_to_find=id_to_find, marker_size=marker_size, show_video=False, 
                 camera_matrix=camera_matrix, camera_distortion=camera_distortion)
                 
                 
@@ -147,11 +142,11 @@ while True:
 
     marker_found, x_cm, y_cm, z_cm = aruco_tracker.track(loop=False)
 
-    #Code to land after 30s if it doesn't see anything
+    #Code to land after 20s if it doesn't see anything
     while not marker_found:
         print("No marker found")
         marker_found, x_cm, y_cm, z_cm = aruco_tracker.track(loop=False)
-        if time.time() >= time_1 + 30.0:
+        if time.time() >= time_1 + 20.0:
             if vehicle.mode == "GUIDED":
                 print (" -->>COMMANDING TO LAND<<")
                 vehicle.mode = "LAND"
