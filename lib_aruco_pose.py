@@ -76,7 +76,7 @@ class ArucoSingleTracker():
         self._R_flip[2,2] =-1.0
 
         #--- Define the aruco dictionary
-        self._aruco_dict  = aruco.getPredefinedDictionary(aruco.DICT_6X6_250) #DICT_ARUCO_ORIGINAL
+        self._aruco_dict  = aruco.getPredefinedDictionary(aruco.DICT_4X4_1000) #DICT_ARUCO_ORIGINAL
         self._parameters  = aruco.DetectorParameters_create()
 
 
@@ -239,8 +239,8 @@ class ArucoSingleTracker():
 if __name__ == "__main__":
 
     #--- Define Tag
-    id_to_find  = 33
-    marker_size  = 10 #- [cm]
+    id_to_find  = 106
+    marker_size  = 7.4 #- [cm]
 
     #--- Get the camera calibration path
     calib_path  = ""
