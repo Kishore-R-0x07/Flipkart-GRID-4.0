@@ -196,8 +196,8 @@ while True:
             print("Commanding to   Lat = %.7f  Lon = %.7f"%(location_marker.lat, location_marker.lon))
 
 
-        # Defining last seen aruco location to go back to.
-        aruco_loc = LocationGlobalRelative(marker_lat, marker_lon, 2)    
+            # Defining last seen aruco location to go back to.
+            aruco_loc = LocationGlobalRelative(uav_location.lat, uav_location.lon, 2)    
 
 
         #--- Command to pickup
