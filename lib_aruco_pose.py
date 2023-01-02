@@ -57,7 +57,11 @@ class ArucoSingleTracker():
         self.marker_size    = marker_size
         self._show_video    = show_video
         self._store_video    = store_video
-        self.fourcc = cv2.VideoWriter_fourcc(*'XVID')
+        self.fourcc = cv2.VideoWriter_fourcc('m', 'p', '4', 'v')
+        ret, frame = self._cap.read() # Just to get the frame shape so that dims need not be hard-coded
+        size = frame.shape[:2] # height, width, no.of channels
+        self.out = cv2.VideoWriter('lib_aruco.mp4',self.fourcc, 20.0, (size[1], size[0])) # width, height
+        self._cap.release()
         
         self._camera_matrix = camera_matrix
         self._camera_distortion = camera_distortion
@@ -135,9 +139,9 @@ class ArucoSingleTracker():
         
         self._kill = False
         if show_video is None: show_video = self._show_video
-        ret, frame = self._cap.read() # Just to get the frame shape so that dims need not be hard-coded
-        size = frame.shape[:2] # height, width, no.of channels
-        out = cv2.VideoWriter('lib_aruco.mp4',self.fourcc, 20.0, (size[1], size[0])) # width, height
+#         ret, frame = self._cap.read() # Just to get the frame shape so that dims need not be hard-coded
+#         size = frame.shape[:2] # height, width, no.of channels
+#         out = cv2.VideoWriter('lib_aruco.mp4',self.fourcc, 20.0, (size[1], size[0])) # width, height
         
         marker_found = False
         x = y = z = 0
@@ -228,7 +232,7 @@ class ArucoSingleTracker():
                     cv2.destroyAllWindows()
                     break
             if self._store_video:
-                    out.write(frame)
+                    self.out.write(frame)
             if not loop: return(marker_found, x, y, z)
             
 
