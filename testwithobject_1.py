@@ -152,7 +152,7 @@ while True:
         if aruco_loc is not None:
             vehicle.simple_goto(aruco_loc, groundspeed = 0.75)
             print("Going to last seen aruco location...")
-            time.sleep(5)
+            time.sleep(1)
 
         if time.time() >= time_1 + wait_time:
             if vehicle.mode == "GUIDED":
