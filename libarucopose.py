@@ -58,10 +58,11 @@ class ArucoSingleTracker():
         self._show_video    = show_video
         self._store_video    = store_video
         self.fourcc = cv2.VideoWriter_fourcc('m', 'p', '4', 'v')
+        self._cap = cv2.VideoCapture(0)
         ret, frame = self._cap.read() # Just to get the frame shape so that dims need not be hard-coded
         size = frame.shape[:2] # height, width, no.of channels
         self.out = cv2.VideoWriter('lib_aruco.mp4',self.fourcc, 20.0, (size[1], size[0])) # width, height
-        self._cap.release()
+        #self._cap.release()
         
         self._camera_matrix = camera_matrix
         self._camera_distortion = camera_distortion
@@ -81,7 +82,7 @@ class ArucoSingleTracker():
 
 
         #--- Capture the videocamera (this may also be a video or a picture)
-        self._cap = cv2.VideoCapture(0)#cv2.VideoCapture(2)
+        #self._cap = cv2.VideoCapture(0) #cv2.VideoCapture(2)
         #-- Set the camera size as the one it was calibrated with
         self._cap.set(cv2.CAP_PROP_FRAME_WIDTH, camera_size[0])
         self._cap.set(cv2.CAP_PROP_FRAME_HEIGHT, camera_size[1])
