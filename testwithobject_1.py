@@ -6,7 +6,7 @@ import RPi.GPIO as GPIO
 
 from dronekit import connect, VehicleMode, LocationGlobalRelative, Command, LocationGlobal
 from pymavlink import mavutil
-from libarucopose import *
+from libarucopose1 import *
 
 #--------------------------------------------------
 #-------------- FUNCTIONS  
