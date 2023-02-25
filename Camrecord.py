@@ -1,7 +1,7 @@
 import cv2
 cap = cv2.VideoCapture(0)
 fourcc = cv2.VideoWriter_fourcc('m', 'p', '4', 'v')
-out = cv2.VideoWriter('output.mp4', fourcc, 25, (640, 480), isColor=True)
+out = cv2.VideoWriter('output.mp4', fourcc, 100000, (640, 480), isColor=True)
 while True:
     ret, frame = cap.read()
     frame = cv2.resize(frame, (640, 480))
